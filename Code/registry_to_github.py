@@ -64,15 +64,15 @@ def registry_to_github(package_name: str, ecosystem: str = None):
     ecosystem = ecosystem.upper()
     if ecosystem == 'PIP':
         ecosystem = 'PYPI'
-    if 'CRATES' in ecosystem:
-        ecosystem = 'CARGO'
-    if not ecosystem or ecosystem.upper() not in ['GO', 'NPM', 'CARGO', 'MAVEN', 'PYPI', 'NUGET']:
-        if 'RUBY' in ecosystem or 'GEMS' in ecosystem:
-            return ruby_to_github(package_name)
+    # if 'CRATES' in ecosystem:
+    #     ecosystem = 'CARGO'
+    # if not ecosystem or ecosystem.upper() not in ['GO', 'NPM', 'CARGO', 'MAVEN', 'PYPI', 'NUGET']:
+    #     if 'RUBY' in ecosystem or 'GEMS' in ecosystem:
+    #         return ruby_to_github(package_name)
 
-        if 'PACKAGIST' or 'COMPOSER' in ecosystem:
-            return composer_to_github(package_name)
-        return
+    #     if 'PACKAGIST' or 'COMPOSER' in ecosystem:
+    #         return composer_to_github(package_name)
+    #     return
     try:
         package_name = quote(package_name, safe="")
         if package_name.startswith('vuln%2FGO'): return None
@@ -287,21 +287,21 @@ def registry_url_to_github(url):
     URL_REGISTRY_CVE_MAPPER = {
         'github.com': extract_repo_base_url,
 
-        'npmjs.com': npmjs_to_github,
-        'pkg.go.dev': gopkg_to_github,
+        # 'npmjs.com': npmjs_to_github,
+        # 'pkg.go.dev': gopkg_to_github,
 
-        'rubygems.org': ruby_to_github,
+        # 'rubygems.org': ruby_to_github,
 
-        'packagist.org': composer_to_github,
+        # 'packagist.org': composer_to_github,
         'pypi.org': pypi_to_github,
 
-        'central.sonatype.com': maven_to_github,
-        'maven.sonatype.com': maven_to_github,
-        'repo1.maven.org': maven_to_github,
-        'repo2.maven.org': maven_to_github,
+        # 'central.sonatype.com': maven_to_github,
+        # 'maven.sonatype.com': maven_to_github,
+        # 'repo1.maven.org': maven_to_github,
+        # 'repo2.maven.org': maven_to_github,
 
-        'crates.io': rust_to_github,
-        'nuget.org': nuget_to_github,
+        # 'crates.io': rust_to_github,
+        # 'nuget.org': nuget_to_github,
     }
     try:
         parsed_url = urlparse(url)
